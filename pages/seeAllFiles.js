@@ -109,7 +109,7 @@ export default function SeeAllFiles() {
 
 
 
-                                                {ele.name.includes(".mkv") || ele.name.includes(".mp4") && <>
+                                                {(ele.name.includes(".mkv") || ele.name.includes(".mp4")) && <>
 
                                                     <a href={`https://seedr.torrentdev.workers.dev/playVid?id=${ele.id}&embed=1`} target='_black'>
                                                         <Button colorScheme='yellow' variant='outline'>
