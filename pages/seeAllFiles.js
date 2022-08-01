@@ -124,7 +124,7 @@ export default function SeeAllFiles() {
                                                         </Button>
                                                     </a>
 
-                                                    {!isAndroid && <>
+                                                    {isAndroid && <>
                                                         <br />
                                                         <br />
                                                         Select Your Favourite Player to Watch:
