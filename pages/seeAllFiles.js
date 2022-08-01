@@ -72,7 +72,7 @@ export default function SeeAllFiles() {
                 <br />
 
 
-                {!filesAndFolders && !firstLoad && <SkeletonPage />}
+                {(!filesAndFolders || !firstLoad ) && <SkeletonPage />}
 
 
                 {filesAndFolders && <VStack
@@ -89,7 +89,7 @@ export default function SeeAllFiles() {
                                         <AccordionItem>
                                             <h2>
                                                 <AccordionButton>
-                                                    <HStack height={'50px'} background={'yellow.50'} padding={2}>
+                                                    <HStack height={'50px'} padding={2}>
                                                         <Feature
                                                             icon={
                                                                 <FaFolder w={5} h={5} />
@@ -97,7 +97,7 @@ export default function SeeAllFiles() {
                                                             text={ele.name}
                                                         />
                                                     </HStack>
-
+                                                    <AccordionIcon />
                                                 </AccordionButton>
                                             </h2>
                                             <AccordionPanel pb={4}>
@@ -124,17 +124,17 @@ export default function SeeAllFiles() {
                                                         </Button>
                                                     </a>
 
-                                                    {isAndroid && <>
+                                                    {!isAndroid && <>
                                                         <br />
                                                         <br />
                                                         Select Your Favourite Player to Watch:
                                                         <br />
                                                         <HStack>
-                                                            <a href={'vlc://' + encodeURIComponent("https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id)}><Image alt={"VLC Player"} src='https://i.ibb.co/pnkzqQy/index.png' width='50' height='50' /></a>
-                                                            <a href={'intent:' + encodeURIComponent("https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id) + '#Intent;package=com.mxtech.videoplayer.ad;S.title=;end'}><Image alt={"MX Player"}  src='https://play-lh.googleusercontent.com/D17gZhrvhTyMc68MPtR8sRMs9BBzi6XOhnxGgQDVrWmXCThKo9yFxVWO7HR359_by80=w480-h960' width='50' height='50' /></a>
-                                                            <a href={'intent:' + encodeURIComponent("https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id) + '#Intent;package=com.mxtech.videoplayer.pro;S.title=;end'}><Image  alt={"MX Player PRO"}  src='https://telegra.ph/file/55a9a39612e8a4645e9aa.png' width='50' height='50' /></a>
-                                                            <a href={'nplayer-' + encodeURIComponent("https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id)}><Image alt={"N-Player"}  src='https://play-lh.googleusercontent.com/sUfT6XnffHLlw6UcJ4UMwfAohc63xYGqdU1nEOcmQuvRg0qXZVZswFO4I7eT1zN_UigD=w480-h960' width='50' height='50' /></a>
-                                                            <a href={'podplayer//' + encodeURIComponent("https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id)}><Image alt={"PodPlayer"}  src='https://play-lh.googleusercontent.com/DFGmIrt1GvYT3t545ow8WkrmijWk82gcddWRtriSpcAO-e_zsSxdELDEpGz6_3yJVg=w480-h960' width='50' height='50' /></a>
+                                                            <a href={'vlc://' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id}><Image alt={"VLC Player"} src='https://i.ibb.co/pnkzqQy/index.png' width='50' height='50' /></a>
+                                                            <a href={'intent:' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id+ '#Intent;package=com.mxtech.videoplayer.ad;S.title=;end'}><Image alt={"MX Player"}  src='https://play-lh.googleusercontent.com/D17gZhrvhTyMc68MPtR8sRMs9BBzi6XOhnxGgQDVrWmXCThKo9yFxVWO7HR359_by80=w480-h960' width='50' height='50' /></a>
+                                                            <a href={'intent:' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id + '#Intent;package=com.mxtech.videoplayer.pro;S.title=;end'}><Image  alt={"MX Player PRO"}  src='https://telegra.ph/file/55a9a39612e8a4645e9aa.png' width='50' height='50' /></a>
+                                                            <a href={"nplayer-" + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id}><Image alt={"N-Player"}  src='https://play-lh.googleusercontent.com/sUfT6XnffHLlw6UcJ4UMwfAohc63xYGqdU1nEOcmQuvRg0qXZVZswFO4I7eT1zN_UigD=w480-h960' width='50' height='50' /></a>
+                                                            {/* <a href={'podplayer//' + encodeURIComponent("https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id)}><Image alt={"PodPlayer"}  src='https://play-lh.googleusercontent.com/DFGmIrt1GvYT3t545ow8WkrmijWk82gcddWRtriSpcAO-e_zsSxdELDEpGz6_3yJVg=w480-h960' width='50' height='50' /></a> */}
                                                         </HStack>
                                                     </>}
 
