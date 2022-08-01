@@ -6,7 +6,7 @@
         <br><a href='vlc://https://zee5vodnd.akamaized.net'><img src='img/vlc.png' width='50' height='50'></a>&ensp;
         
         
-        <a href='intent:https://zee5vodnd.akamaized.net#Intent;package=com.mxtech.videoplayer.ad;S.title=;end'><img src='img/mx.png'  width='50' height='50'></a>&ensp;<a href='intent:https://zee5vodnd.akamaized.net#Intent;package=com.mxtech.videoplayer.pro;S.title=;end'><img src='img/mxp.png'  width='50' height='50'></a>&ensp;<a href='nplayer-https://zee5vodnd.akamaized.net'><img src='img/np.png'  width='50' height='50'></a>&ensp;<a href='potplayer:https://zee5vodnd.akamaized.net'><img src='img/pot.png'  width='50' height='50'></a><br><br><button class='btn' data-clipboard-text='https://zee5vodnd.akamaized.net'>
+        <a href=''><img src='img/mx.png'  width='50' height='50'></a>&ensp;<a href=''><img src='img/mxp.png'  width='50' height='50'></a>&ensp;<a href='nplayer-https://zee5vodnd.akamaized.net'><img src='img/np.png'  width='50' height='50'></a>&ensp;<a href='potplayer:https://zee5vodnd.akamaized.net'><img src='img/pot.png'  width='50' height='50'></a><br><br><button class='btn' data-clipboard-text='https://zee5vodnd.akamaized.net'>
     Copy Link
 </button></center></div>
 </main>
