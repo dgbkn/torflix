@@ -43,7 +43,7 @@ export default function SeeAllFiles() {
 
 
     useEffect(() => {
-        setTimeout(() => { refreshData(); setfirstLoad(true) }, 2000);
+        setTimeout(() => { refreshData(); setfirstLoad(true) }, 4000);
     }, []);
 
     return (
@@ -131,8 +131,8 @@ export default function SeeAllFiles() {
                                                         <br />
                                                         <HStack>
                                                             <a href={'vlc://' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id}><Image alt={"VLC Player"} src='https://i.ibb.co/pnkzqQy/index.png' width='50' height='50' /></a>
-                                                            <a href={'intent:' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id+ '#Intent;package=com.mxtech.videoplayer.ad;S.title=;end'}><Image alt={"MX Player"}  src='https://play-lh.googleusercontent.com/D17gZhrvhTyMc68MPtR8sRMs9BBzi6XOhnxGgQDVrWmXCThKo9yFxVWO7HR359_by80=w480-h960' width='50' height='50' /></a>
-                                                            <a href={'intent:' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id + '#Intent;package=com.mxtech.videoplayer.pro;S.title=;end'}><Image  alt={"MX Player PRO"}  src='https://telegra.ph/file/55a9a39612e8a4645e9aa.png' width='50' height='50' /></a>
+                                                            <a href={'intent:' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id+ '&e=.mkv#Intent;package=com.mxtech.videoplayer.ad;S.title=PlayingNow;end'}><Image alt={"MX Player"}  src='https://play-lh.googleusercontent.com/D17gZhrvhTyMc68MPtR8sRMs9BBzi6XOhnxGgQDVrWmXCThKo9yFxVWO7HR359_by80=w480-h960' width='50' height='50' /></a>
+                                                            <a href={'intent:' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id + '&e=.mkv#Intent;package=com.mxtech.videoplayer.pro;S.title=PlayingNow;end'}><Image  alt={"MX Player PRO"}  src='https://i.ibb.co/Btrggzy/Untitled.png' width='50' height='50' /></a>
                                                             <a href={"nplayer-" + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id}><Image alt={"N-Player"}  src='https://play-lh.googleusercontent.com/sUfT6XnffHLlw6UcJ4UMwfAohc63xYGqdU1nEOcmQuvRg0qXZVZswFO4I7eT1zN_UigD=w480-h960' width='50' height='50' /></a>
                                                             {/* <a href={'podplayer//' + encodeURIComponent("https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id)}><Image alt={"PodPlayer"}  src='https://play-lh.googleusercontent.com/DFGmIrt1GvYT3t545ow8WkrmijWk82gcddWRtriSpcAO-e_zsSxdELDEpGz6_3yJVg=w480-h960' width='50' height='50' /></a> */}
                                                         </HStack>
