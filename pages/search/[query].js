@@ -30,7 +30,7 @@ export default function QueryPage() {
 
 
                 {data && !error &&
-                    data.data.filter(function (el) {
+                    data.torrents.filter(function (el) {
                         return (parseFloat(el.size) <= 4.0 || parseInt(el.size) > 100) &&
                             el.magnet != undefined;
                     }
@@ -48,11 +48,11 @@ export default function QueryPage() {
                                         >
                                             <Box px="6" py="4">
                                                 <Text as="h3" fontWeight="bold" fontSize="md">
-                                                    {s.name}
+                                                    {s.title}
                                                 </Text>
 
                                                 <Text as={'span'} color={'red.500'}>
-                                                    {' | ' + s.size}
+                                                    { 'Seeds:' + s.seeds + ' | ' + s.source + ' | ' + s.size}
                                                 </Text>
                                             </Box>
                                             <Divider />

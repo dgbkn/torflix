@@ -15,7 +15,7 @@ const useFetchAll = (part) => {
   useEffect(() => {
     const abortCont = new AbortController();
 
-    var uri_1337x = `https://torrents-api-py3.herokuapp.com/api/v1/all/search?query=${part}`;
+    var uri_1337x = `https://serverdevbk.cybranceehost.com/tor/sandr.php?qry=${part}`;
       fetch(uri_1337x, { signal: abortCont.signal })
       .then(res => {
         if (!res.ok) { // error coming back from server
