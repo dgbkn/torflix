@@ -34,7 +34,7 @@ export default function AddMagnet() {
 
           var prog = data.progress ? parseFloat(data.progress) : 0;
 
-          if (prog >= 99.0) {
+          if (prog >= 98.0) {
             myStopFunction();
             router.push("/seeAllFiles");
           }
