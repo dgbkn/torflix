@@ -53,7 +53,7 @@ export default function AddMagnet() {
             console.log(err.message);
           }
         });
-    }, 1000);
+    }, 500);
 
 
     const myTimeout = setTimeout(()=>{
