@@ -17,7 +17,7 @@ export default function QueryPage() {
     const [resp, setGitData] = useState([]);
 
     useEffect(() => {
-
+        var history = useHi
         const abortCont = new AbortController();
         var uri_1337x = `https://1337x.to/sort-search/${encodeURIComponent(router.query.query)}/time/desc/1/`;
         var selector = "tr";
@@ -56,7 +56,8 @@ export default function QueryPage() {
                         "size": size,
                         "GB": GB,
                         "uploader": uploader,
-                        "datae": datae
+                        "datae": datae,
+                        "ssiss":ssiss
                     });
                 }
 
@@ -69,6 +70,35 @@ export default function QueryPage() {
 
         fetchData();
     }, []);
+
+
+
+    const handleLoad = (data,name) => {
+        toast({
+            title: "Loading.. "+name,
+            description: "Please Wait.......",
+            status: 'success',
+            duration: 3000,
+            isClosable: true,
+        })
+
+
+
+        fetch(`https://scrap.torrentdev.workers.dev/?url=${"https://1337x.to/" + data}&selector=body`)
+            .then(response => response.json())
+            .then(long_url => {
+
+                long_url = long_url.result[0].innerHTML;
+
+                const parser = new DOMParser();
+                var doc = parser.parseFromString(long_url, "text/html");
+                var magnet = doc.querySelector('.clearfix ul li a').href;
+
+                router.push(`/addTorrent/${encodeURIComponent(magnet)}`);
+            })
+
+    }
+
 
     return (
         <div>
@@ -103,7 +133,7 @@ export default function QueryPage() {
                                     return (!el.GB || (el.GB && el.size <= 4.0));
                                 }
                                 ).map((s, i) => (
-                                    <Link key={i + 1} href={`/addTorrent/${encodeURIComponent(s.magnet)}`}>
+                                    <Button key={i + 1} onClick={()=>{handleLoad(s.magnet,s.name)}}>
                                         <a>
                                             <Box as="section" py="2" mx="3">
                                                 <Box maxW="3xl" mx="auto" px={{ md: '8' }}
@@ -120,14 +150,14 @@ export default function QueryPage() {
                                                         </Text>
 
                                                         <Text as={'span'} color={'red.500'}>
-                                                            {'Seeds:' + s.seeds + ' | ' + s.uploader + ' | ' + s.datae + ' | ' + s.size + " " + s.GB}
+                                                            {'Seeds:' + s.seeds + ' | ' + s.uploader + ' | ' + s.datae + ' | ' + s.ssiss}
                                                         </Text>
                                                     </Box>
                                                     <Divider />
                                                 </Box>
                                             </Box>
                                         </a>
-                                    </Link>
+                                    </Button>
 
                                 ))
                             }
