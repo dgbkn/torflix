@@ -7,18 +7,14 @@ import { useState, useEffect } from 'react';
 
 // action=getBatchDetails&batch_id=6172a60a2bf30e0011aae115
 
-const useFetchAll = (part) => {
+const useFetch = (part) => {
   const [data, setData] = useState(null);
   const [loading, setIsPending] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const abortCont = new AbortController();
-
-    var uri_1337x = `https://serverdevbk.cybranceehost.com/tor/sandr.php?qry=${part}`;
-    // var uri_1337x = `https://seedr.torrentdev.workers.dev/torrentSearch?query=${part}`;
-    
-      fetch(uri_1337x, { signal: abortCont.signal })
+     fetch(`${part}}`, { signal: abortCont.signal })
       .then(res => {
         if (!res.ok) { // error coming back from server
           throw Error('Could Not fetch the data for that resource');
@@ -49,4 +45,4 @@ const useFetchAll = (part) => {
   return { data, loading, error };
 }
  
-export default useFetchAll;
+export default useFetch;
