@@ -19,7 +19,9 @@ export default function QueryPage() {
 
     useEffect(() => {
         const abortCont = new AbortController();
-        var uri_1337x = `https://1337x.to/sort-search/${encodeURIComponent(router.query.query)}/time/desc/1/`;
+        //var uri_1337x = `https://1337x.to/sort-search/${encodeURIComponent(router.query.query)}/time/desc/1/`;
+        var uri_1337x = `https://1337x.to/sort-search/${encodeURIComponent(router.query.query)}/seeders/desc/1/`;
+
         var selector = "tr";
 
         const fetchData = async () => {
