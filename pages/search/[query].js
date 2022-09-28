@@ -5,10 +5,11 @@ import SkeletonPage from '../../components/SkeletonPage'
 import useFetchAll from '../../hooks/useFetchtorlock'
 import Link from 'next/link';
 import useFetch1337x from '../../hooks/useFetch1337x'
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+import { Tabs, TabList, TabPanels, Tab, TabPanel,useToast  } from '@chakra-ui/react'
 
 export default function QueryPage() {
     const router = useRouter()
+    const toast = useToast()
 
     // var { loading2, error2, data2 } = useFetch1337x(router.query.query);
     var { loading, error, data } = useFetchAll(router.query.query);
@@ -17,7 +18,6 @@ export default function QueryPage() {
     const [resp, setGitData] = useState([]);
 
     useEffect(() => {
-        var history = useHi
         const abortCont = new AbortController();
         var uri_1337x = `https://1337x.to/sort-search/${encodeURIComponent(router.query.query)}/time/desc/1/`;
         var selector = "tr";
@@ -82,12 +82,14 @@ export default function QueryPage() {
             isClosable: true,
         })
 
+         
+        data = data.replace(window.location.origin,"");
 
-
-        fetch(`https://scrap.torrentdev.workers.dev/?url=${"https://1337x.to/" + data}&selector=body`)
+        fetch(`https://scrap.torrentdev.workers.dev/?url=${"https://1337x.to" + data}&selector=body`)
             .then(response => response.json())
             .then(long_url => {
-
+                console.log(long_url);
+                console.log("https://1337x.to" + data);
                 long_url = long_url.result[0].innerHTML;
 
                 const parser = new DOMParser();
@@ -125,7 +127,7 @@ export default function QueryPage() {
                     </TabList>
                     <TabPanels>
                         <TabPanel>
-                            {!resp && <SkeletonPage />}
+                            {resp.length == 0 && <SkeletonPage />}
 
 
                             {resp &&
@@ -133,7 +135,7 @@ export default function QueryPage() {
                                     return (!el.GB || (el.GB && el.size <= 4.0));
                                 }
                                 ).map((s, i) => (
-                                    <Button key={i + 1} onClick={()=>{handleLoad(s.magnet,s.name)}}>
+                                    <div key={i + 1} onClick={()=>{handleLoad(s.href,s.name)}} style={{cursor:'pointer'}} >
                                         <a>
                                             <Box as="section" py="2" mx="3">
                                                 <Box maxW="3xl" mx="auto" px={{ md: '8' }}
@@ -157,7 +159,7 @@ export default function QueryPage() {
                                                 </Box>
                                             </Box>
                                         </a>
-                                    </Button>
+                                    </div>
 
                                 ))
                             }
