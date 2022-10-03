@@ -13,9 +13,37 @@ export default function AddMagnet() {
   const [progData, setprogData] = useState('');
 
 
-  const setonInit = () => {
+  const loadProguri = () => {
+      fetch(`https://seedr.torrentdev.workers.dev/getAllFilesandFoldersandTorrents`)
+      .then(res => {
+        if (!res.ok) { // error coming back from server
+          console.log('Could Not fetch the data for that resource');
+        }
+  
+        return res.json();
+      })
+      .then(data => {
+        console.log(data);
+        var prog = data["torrents"][0]["progress_url"];
+        setonInit(prog);
+        // setTimeout(() => { setonInit(); }, 5000);
+      })
+      .catch(err => {
+        if (err.name === 'AbortError') {
+          console.log('fetch aborted')
+        } else {
+          // auto catches network / connection error
+          console.log(err.message);
+        }
+      });
+    
+  }
+
+
+  const setonInit = (progUri) => {
+
     var interVal = setInterval(() => {
-      fetch(`https://seedr.torrentdev.workers.dev/getStatus`)
+      fetch(`https://seedr.torrentdev.workers.dev/getStatusWithURL?url=${encodeURIComponent(progUri)}`)
         .then(res => {
           if (!res.ok) { // error coming back from server
             console.log('Could Not fetch the data for that resource');
@@ -58,33 +86,9 @@ export default function AddMagnet() {
           }
         });
 
-      fetch(`https://seedr.torrentdev.workers.dev/getAllFilesandFoldersandTorrents`)
-        .then(res => {
-          if (!res.ok) { // error coming back from server
-            console.log('Could Not fetch the data for that resource');
-          }
 
-          return res.json();
-        })
-        .then(data => {
-          console.log(data);
-          if (data["folders"].length > 0) {
-            myStopFunction();
-            router.push("/seeAllFiles");
-          }
-
-        })
-        .catch(err => {
-          if (err.name === 'AbortError') {
-            console.log('fetch aborted')
-          } else {
-            // auto catches network / connection error
-            console.log(err.message);
-          }
-        });
-
-    }, 500);
-
+    }, 1000);
+  
 
 
 
@@ -115,7 +119,7 @@ export default function AddMagnet() {
       .then(data => {
         console.log(data);
         setinitialMagnetData(data);
-        setTimeout(() => { setonInit(); }, 5000);
+        setTimeout(() => { loadProguri(); }, 3000);
       })
       .catch(err => {
         if (err.name === 'AbortError') {
@@ -125,6 +129,9 @@ export default function AddMagnet() {
           console.log(err.message);
         }
       });
+
+
+
 
 
     return () => { };
