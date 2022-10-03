@@ -28,19 +28,23 @@ export default function AddMagnet() {
 
 
           if ((data.warnings && data.warnings != '[]' && !vids) || data.download_rate == 0) {
-              myStopFunction();
-              router.push('/slowSpeed');
+            myStopFunction();
+            router.push('/slowSpeed');
           }
 
           var prog = data.progress ? parseFloat(data.progress) : 0;
+
+          // if(prog){
+          //   myStopFunction();
+          // }
 
           if (prog >= 98.0) {
             myStopFunction();
             router.push("/seeAllFiles");
           }
 
-          if(!("status" in data)){
-            window.localStorage.setItem("pr",JSON.stringify(data));
+          if (!("status" in data)) {
+            window.localStorage.setItem("pr", JSON.stringify(data));
           }
 
           setprogData(prog);
@@ -53,15 +57,43 @@ export default function AddMagnet() {
             console.log(err.message);
           }
         });
+
+      fetch(`https://seedr.torrentdev.workers.dev/getAllFilesandFoldersandTorrents`)
+        .then(res => {
+          if (!res.ok) { // error coming back from server
+            console.log('Could Not fetch the data for that resource');
+          }
+
+          return res.json();
+        })
+        .then(data => {
+          console.log(data);
+          if (data["folders"].length > 0) {
+            myStopFunction();
+            router.push("/seeAllFiles");
+          }
+
+        })
+        .catch(err => {
+          if (err.name === 'AbortError') {
+            console.log('fetch aborted')
+          } else {
+            // auto catches network / connection error
+            console.log(err.message);
+          }
+        });
+
     }, 500);
 
 
-    const myTimeout = setTimeout(()=>{
+
+
+    const myTimeout = setTimeout(() => {
       var pr = JSON.parse(localStorage.getItem("pr"));
-      if ( !('status' in pr) && !('download_rate' in pr) && !('progress' in pr) ) {
+      if (!('status' in pr) && !('download_rate' in pr) && !('progress' in pr)) {
         myStopFunction();
         router.push('/slowSpeed');
-    }
+      }
     }, 30000);
 
 
@@ -83,8 +115,8 @@ export default function AddMagnet() {
       .then(data => {
         console.log(data);
         setinitialMagnetData(data);
-        setTimeout(()=>{setonInit();},5000);
-            })
+        setTimeout(() => { setonInit(); }, 5000);
+      })
       .catch(err => {
         if (err.name === 'AbortError') {
           console.log('fetch aborted')
@@ -125,17 +157,17 @@ export default function AddMagnet() {
             }
 
             <VStack>
-            <Heading size={'md'}>
-              Downloading
-              <Text as={'span'} color={'blue.500'}>
-                {' ' + initialMagnetData.title + ' '}
-              </Text>
-              To Server..
-            </Heading>
+              <Heading size={'md'}>
+                Downloading
+                <Text as={'span'} color={'blue.500'}>
+                  {' ' + initialMagnetData.title + ' '}
+                </Text>
+                To Server..
+              </Heading>
 
-            <Text>
-            {progData && 'Progress: ' + progData }
-            </Text>
+              <Text>
+                {progData && 'Progress: ' + progData}
+              </Text>
             </VStack>
 
 
