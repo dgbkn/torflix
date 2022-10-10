@@ -43,7 +43,7 @@ export default function SeeAllFiles() {
 
 
     useEffect(() => {
-        setTimeout(() => { refreshData(); setfirstLoad(true) }, 4000);
+        setTimeout(() => { refreshData(); setfirstLoad(true) }, 2000);
     }, []);
 
     return (
