@@ -15,7 +15,7 @@ const useFetchAll = (part) => {
   useEffect(() => {
     const abortCont = new AbortController();
 
-    var uri_1337x = `https://serverdevbk.cybranceehost.com/tor/sandr.php?qry=${part}`;
+    var uri_1337x = `https://torrent.tanishagoyal.repl.co/sandr.php?qry=${part}`;
     // var uri_1337x = `https://seedr.torrentdev.workers.dev/torrentSearch?query=${part}`;
     
       fetch(uri_1337x, { signal: abortCont.signal })
