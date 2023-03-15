@@ -43,8 +43,11 @@ export default function SeeAllFiles() {
 
 
     useEffect(() => {
-        setTimeout(() => { refreshData(); setfirstLoad(true) }, 2000);
+        setTimeout(() => { refreshData(); setfirstLoad(true); }, 2000);
     }, []);
+
+
+
 
     return (
         <Box >
@@ -72,7 +75,7 @@ export default function SeeAllFiles() {
                 <br />
 
 
-                {(!filesAndFolders || !firstLoad ) && <SkeletonPage />}
+                {(!filesAndFolders || !firstLoad) && <SkeletonPage />}
 
 
                 {filesAndFolders && <VStack
@@ -111,6 +114,11 @@ export default function SeeAllFiles() {
 
                                                 {(ele.name.includes(".mkv") || ele.name.includes(".mp4")) && <>
 
+                                                   <video src={`https://seedr.torrentdev.workers.dev/download?id=${ele.id}`} key={'video34p'} id={'plyrvid'} controls={true} style={{margin:15}}>
+                                                    </video>
+
+                                                    
+
                                                     <a href={`https://seedr.torrentdev.workers.dev/playVid?id=${ele.id}&embed=1`} target='_black'>
                                                         <Button colorScheme='yellow' variant='outline'>
                                                             Play SD.
@@ -131,9 +139,9 @@ export default function SeeAllFiles() {
                                                         <br />
                                                         <HStack>
                                                             <a href={'vlc://' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id}><Image alt={"VLC Player"} src='https://i.ibb.co/pnkzqQy/index.png' width='50' height='50' /></a>
-                                                            <a href={'intent:' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id+ '&e=.mkv#Intent;package=com.mxtech.videoplayer.ad;S.title=PlayingNow;end'}><Image alt={"MX Player"}  src='https://play-lh.googleusercontent.com/D17gZhrvhTyMc68MPtR8sRMs9BBzi6XOhnxGgQDVrWmXCThKo9yFxVWO7HR359_by80=w480-h960' width='50' height='50' /></a>
-                                                            <a href={'intent:' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id + '&e=.mkv#Intent;package=com.mxtech.videoplayer.pro;S.title=PlayingNow;end'}><Image  alt={"MX Player PRO"}  src='https://i.ibb.co/Btrggzy/Untitled.png' width='50' height='50' /></a>
-                                                            <a href={"nplayer-" + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id}><Image alt={"N-Player"}  src='https://play-lh.googleusercontent.com/sUfT6XnffHLlw6UcJ4UMwfAohc63xYGqdU1nEOcmQuvRg0qXZVZswFO4I7eT1zN_UigD=w480-h960' width='50' height='50' /></a>
+                                                            <a href={'intent:' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id + '&e=.mkv#Intent;package=com.mxtech.videoplayer.ad;S.title=PlayingNow;end'}><Image alt={"MX Player"} src='https://play-lh.googleusercontent.com/D17gZhrvhTyMc68MPtR8sRMs9BBzi6XOhnxGgQDVrWmXCThKo9yFxVWO7HR359_by80=w480-h960' width='50' height='50' /></a>
+                                                            <a href={'intent:' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id + '&e=.mkv#Intent;package=com.mxtech.videoplayer.pro;S.title=PlayingNow;end'}><Image alt={"MX Player PRO"} src='https://i.ibb.co/Btrggzy/Untitled.png' width='50' height='50' /></a>
+                                                            <a href={"nplayer-" + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id}><Image alt={"N-Player"} src='https://play-lh.googleusercontent.com/sUfT6XnffHLlw6UcJ4UMwfAohc63xYGqdU1nEOcmQuvRg0qXZVZswFO4I7eT1zN_UigD=w480-h960' width='50' height='50' /></a>
                                                             {/* <a href={'podplayer//' + encodeURIComponent("https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id)}><Image alt={"PodPlayer"}  src='https://play-lh.googleusercontent.com/DFGmIrt1GvYT3t545ow8WkrmijWk82gcddWRtriSpcAO-e_zsSxdELDEpGz6_3yJVg=w480-h960' width='50' height='50' /></a> */}
                                                         </HStack>
                                                     </>}
@@ -203,5 +211,5 @@ export default function SeeAllFiles() {
 
             </Flex>
         </Box>
-    )
+    );
 }
