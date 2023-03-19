@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
       crossorigin="anonymous"></script> */}
     <Script
       id="Adsense-id"
-      data-ad-client="ca-pub-1402284079761185"
+      // data-ad-client="ca-pub-1402284079761185"
       async="true"
       strategy="beforeInteractive"
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1402284079761185"
