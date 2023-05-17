@@ -115,7 +115,7 @@ export default function SeeAllFiles() {
                                                 {(ele.name.includes(".mkv") || ele.name.includes(".mp4")) && <>
 
                                                    <video preload="none" height={'200px'}  key={'video34p'} id={'plyrvid'} controls={true} style={{margin:15}}>
-                                                   <source src={`https://seedr.torrentdev.workers.dev/downloadProxy?id=${ele.id}`} type='video/mp4' />
+                                                   <source src={`https://seedr.torrentdev.workers.dev/download?id=${ele.id}`} type='video/mp4' />
                                                     </video>
 
                                                     
