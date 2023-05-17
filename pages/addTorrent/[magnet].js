@@ -65,7 +65,8 @@ export default function AddMagnet() {
               duration: 9000,
               isClosable: true,
             });
-            router.back();
+            setTimeout(()=>router.back(),3000);
+            
             // router.push('/slowSpeed');
           }
 
@@ -105,7 +106,15 @@ export default function AddMagnet() {
       var pr = JSON.parse(localStorage.getItem("pr"));
       if (!('status' in pr) && !('download_rate' in pr) && !('progress' in pr)) {
         myStopFunction();
-        router.push('/slowSpeed');
+        toast({
+          title: 'Slow Speed',
+          description: "Not enough seeds",
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        });
+        setTimeout(()=>router.back(),3000);
+        // router.push('/slowSpeed');
       }
     }, 30000);
 
@@ -135,7 +144,7 @@ export default function AddMagnet() {
               duration: 9000,
               isClosable: true,
             });
-            router.back();
+            setTimeout(()=>router.back(),3000);    
           }
           setinitialMagnetData(data);
           setTimeout(() => { loadProguri(); }, 3000);
