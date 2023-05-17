@@ -1,4 +1,4 @@
-import { Alert, AlertIcon, Button, Center, CircularProgress, Container, Heading, HStack, Spacer, Stack, Text, VStack } from '@chakra-ui/react';
+import { Alert, AlertIcon, Button, Center, CircularProgress, Container, Heading, HStack, Spacer, Stack, Text, VStack ,useToast} from '@chakra-ui/react';
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import useFetch from '../../hooks/useFetch';
@@ -6,6 +6,7 @@ import useFetch from '../../hooks/useFetch';
 export default function AddMagnet() {
   const router = useRouter();
 
+  const toast = useToast()
 
   // var { loading, error, data } = useFetch();
   const [initialMagnetData, setinitialMagnetData] = useState('');
@@ -14,12 +15,12 @@ export default function AddMagnet() {
 
 
   const loadProguri = () => {
-      fetch(`https://seedr.torrentdev.workers.dev/getAllFilesandFoldersandTorrents`)
+    fetch(`https://seedr.torrentdev.workers.dev/getAllFilesandFoldersandTorrents`)
       .then(res => {
         if (!res.ok) { // error coming back from server
           console.log('Could Not fetch the data for that resource');
         }
-  
+
         return res.json();
       })
       .then(data => {
@@ -36,7 +37,7 @@ export default function AddMagnet() {
           console.log(err.message);
         }
       });
-    
+
   }
 
 
@@ -57,7 +58,15 @@ export default function AddMagnet() {
 
           if ((data.warnings && data.warnings != '[]' && !vids) || data.download_rate == 0) {
             myStopFunction();
-            router.push('/slowSpeed');
+            toast({
+              title: 'Slow Speed',
+              description: "Not enough seeds",
+              status: 'error',
+              duration: 9000,
+              isClosable: true,
+            });
+            router.back();
+            // router.push('/slowSpeed');
           }
 
           var prog = data.progress ? parseFloat(data.progress) : 0;
@@ -88,7 +97,7 @@ export default function AddMagnet() {
 
 
     }, 1000);
-  
+
 
 
 
@@ -107,34 +116,41 @@ export default function AddMagnet() {
   }
 
   useEffect(() => {
+    if (router.query.magnet != undefined) {
+      fetch(`https://seedr.torrentdev.workers.dev/?action=addmagnet&magnet=${encodeURIComponent(router.query.magnet)}`)
+        .then(res => {
+          if (!res.ok) { // error coming back from server
+            console.log('Could Not fetch the data for that resource');
+          }
 
-    fetch(`https://seedr.torrentdev.workers.dev/?action=addmagnet&magnet=${encodeURIComponent(router.query.magnet)}`)
-      .then(res => {
-        if (!res.ok) { // error coming back from server
-          console.log('Could Not fetch the data for that resource');
-        }
+          return res.json();
+        })
+        .then(data => {
+          console.log(data);
+          if(data.result == "not_enough_space_wishlist_full"){
+            toast({
+              title: 'Not enough Space for torrent',
+              description: "not_enough_space_wishlist_full",
+              status: 'error',
+              duration: 9000,
+              isClosable: true,
+            });
+            router.back();
+          }
+          setinitialMagnetData(data);
+          setTimeout(() => { loadProguri(); }, 3000);
+        })
+        .catch(err => {
+          if (err.name === 'AbortError') {
+            console.log('fetch aborted')
+          } else {
+            // auto catches network / connection error
+            console.log(err.message);
+          }
+        });
 
-        return res.json();
-      })
-      .then(data => {
-        console.log(data);
-        setinitialMagnetData(data);
-        setTimeout(() => { loadProguri(); }, 3000);
-      })
-      .catch(err => {
-        if (err.name === 'AbortError') {
-          console.log('fetch aborted')
-        } else {
-          // auto catches network / connection error
-          console.log(err.message);
-        }
-      });
-
-
-
-
-
-    return () => { };
+      return () => { };
+    }
   }, [router.query.magnet]);
 
   return (
