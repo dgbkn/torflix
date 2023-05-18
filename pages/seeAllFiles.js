@@ -7,6 +7,7 @@ import SkeletonPage from "../components/SkeletonPage";
 import Feature from '../components/Feature';
 import { useRouter } from "next/router";
 import { isAndroid } from "react-device-detect";
+import Script from 'next/script';
 
 export default function SeeAllFiles() {
 
@@ -58,11 +59,17 @@ export default function SeeAllFiles() {
                     <title>
                         All Files.
                     </title>
-  
+
 
                 </Head>
 
-
+                <Script
+                    src="/speedVid.js"
+                    strategy="lazyOnload"
+                    onLoad={() =>
+                        console.log(`script loaded correctly, speed handler has been populated`)
+                    }
+                />
 
                 <Heading
                     fontWeight={'bold'}
@@ -117,10 +124,10 @@ export default function SeeAllFiles() {
 
 
                                                 {(ele.name.includes(".mkv") || ele.name.includes(".mp4")) && <>
-                                                
+
                                                     <video height={'200px'} key={'video34p'} id={'plyrvid'} controls={true} style={{ margin: 15 }} preload="none">
                                                         <source src={`https://seedr.torrentdev.workers.dev/downloadProxy?id=${ele.id}`} type='video/mp4' />
-                                                    </video> 
+                                                    </video>
 
 
 
