@@ -1,26 +1,45 @@
 window.onkeydown = vidCtrl;
 
-function vidCtrl(e) {
-  const vid = document.querySelector('video');
-  const key = e.code;
 
-  if (key === 'ArrowLeft') {
-    vid.currentTime -= 5;
-    if (vid.currentTime < 0) {
-      vid.pause();
-      vid.currentTime = 0;
+Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
+    get: function () {
+        return !!(this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2);
     }
-  } else if (key === 'ArrowRight') {
-    vid.currentTime += 5;
-    if (vid.currentTime > vid.duration) {
-      vid.pause();
-      vid.currentTime = 0;
+})
+
+function vidCtrl(e) {
+    const vids = document.getElementsByTagName('video');
+    var vid = null;
+    vids.forEach(video => {
+        if (video.playing) {
+            vid = video;
+        }
+
+    });
+
+    if (vid == null) {
+        return;
     }
-  } else if (key === 'Space') {
-    if (vid.paused || vid.ended) {
-      vid.play();
-    } else {
-      vid.pause();
+
+    const key = e.code;
+
+    if (key === 'ArrowLeft') {
+        vid.currentTime -= 5;
+        if (vid.currentTime < 0) {
+            vid.pause();
+            vid.currentTime = 0;
+        }
+    } else if (key === 'ArrowRight') {
+        vid.currentTime += 5;
+        if (vid.currentTime > vid.duration) {
+            vid.pause();
+            vid.currentTime = 0;
+        }
+    } else if (key === 'Space') {
+        if (vid.paused || vid.ended) {
+            vid.play();
+        } else {
+            vid.pause();
+        }
     }
-  }
 }
