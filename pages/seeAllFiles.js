@@ -58,8 +58,10 @@ export default function SeeAllFiles() {
                     <title>
                         All Files.
                     </title>
+  
 
                 </Head>
+
 
 
                 <Heading
@@ -104,7 +106,7 @@ export default function SeeAllFiles() {
                                                 </AccordionButton>
                                             </h2>
                                             <AccordionPanel pb={4}>
-                                                <a href={`https://seedr.torrentdev.workers.dev/downloadProxy?id=${ele.id}`} target='_black'>
+                                                <a href={`https://seedr.torrentdev.workers.dev/download?id=${ele.id}`} target='_black'>
                                                     <Button colorScheme='yellow' variant='outline'>
                                                         Download.
                                                     </Button>
@@ -112,13 +114,17 @@ export default function SeeAllFiles() {
 
 
 
+
+
                                                 {(ele.name.includes(".mkv") || ele.name.includes(".mp4")) && <>
+                                                
+                                                    <video height={'200px'} key={'video34p'} id={'plyrvid'} controls={true} style={{ margin: 15 }} preload="none">
+                                                        <source src={`https://seedr.torrentdev.workers.dev/downloadProxy?id=${ele.id}`} type='video/mp4' />
+                                                    </video> 
 
-                                                   <video height={'200px'}  key={'video34p'} id={'plyrvid'} controls={true} style={{margin:15}}>
-                                                   <source src={`https://seedr.torrentdev.workers.dev/downloadProxy?id=${ele.id}`} type='video/mp4' />
-                                                    </video>
 
-                                                    
+
+
 
                                                     <a href={`https://seedr.torrentdev.workers.dev/playVid?id=${ele.id}&embed=1`} target='_black'>
                                                         <Button colorScheme='yellow' variant='outline'>

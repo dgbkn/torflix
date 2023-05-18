@@ -8,8 +8,10 @@ import Navbar from '../components/Navbar';
 import "./plyr.css";
 import Script from 'next/script';
 
+import '@vime/core/themes/default.css';
 
 function MyApp({ Component, pageProps }) {
+
   return <ChakraProvider theme={theme}>
     {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1402284079761185"
       crossorigin="anonymous"></script> */}
@@ -20,6 +22,7 @@ function MyApp({ Component, pageProps }) {
       strategy="beforeInteractive"
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1402284079761185"
     />
+
     <Navbar />
     <Component {...pageProps} />
   </ChakraProvider>
