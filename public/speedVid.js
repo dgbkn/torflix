@@ -10,12 +10,16 @@ Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
 function vidCtrl(e) {
     const vids = document.getElementsByTagName('video');
     var vid = null;
-    vids.forEach(video => {
+
+    
+    for (let index = 0; index < vids.length; index++) {
+        const video = vids[index];
         if (video.playing) {
             vid = video;
+            break;
         }
+    }
 
-    });
 
     if (vid == null) {
         return;
