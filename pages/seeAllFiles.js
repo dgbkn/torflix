@@ -104,7 +104,7 @@ export default function SeeAllFiles() {
                                                 </AccordionButton>
                                             </h2>
                                             <AccordionPanel pb={4}>
-                                                <a href={`https://seedr.torrentdev.workers.dev/download?id=${ele.id}`} target='_black'>
+                                                <a href={`https://seedr.torrentdev.workers.dev/downloadProxy?id=${ele.id}`} target='_black'>
                                                     <Button colorScheme='yellow' variant='outline'>
                                                         Download.
                                                     </Button>
