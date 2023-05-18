@@ -8,7 +8,6 @@ import Navbar from '../components/Navbar';
 import "./plyr.css";
 import Script from 'next/script';
 
-import '@vime/core/themes/default.css';
 
 function MyApp({ Component, pageProps }) {
 
