@@ -179,7 +179,7 @@ export default function SeeAllFiles() {
                                                         Select Your Favourite Player to Watch:
                                                         <br />
                                                         <HStack>
-                                                            <a href={'vlc-x-callback://x-callback-url/stream?url=' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id}><Image alt={"VLC Player"} src='https://i.ibb.co/pnkzqQy/index.png' width='50' height='50' /></a>
+                                                            <a href={'vlc-x-callback://x-callback-url/stream?url=' + encodeURIComponent("https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id)}><Image alt={"VLC Player"} src='https://i.ibb.co/pnkzqQy/index.png' width='50' height='50' /></a>
                                                         </HStack>
                                                     </>}
 
