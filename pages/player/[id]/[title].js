@@ -9,8 +9,8 @@ export default function Player() {
     const width = useBreakpointValue(
         {
           sm: '100vw',
-          md: '70vw',
-          lg: '60vw',
+          md: '80vw',
+          lg: '75vw',
         },
         {
           fallback: 'md',

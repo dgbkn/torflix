@@ -17,7 +17,6 @@ export default function VidStackPlayer({ title = "", src = "https://stream.mux.c
             title={title}
             src={[{ src: src, type: 'video/mp4' },
             ]}
-            style={{ "--media-height": "400px!important" }}
         >
             <MediaOutlet>
                 {/* <media-poster
