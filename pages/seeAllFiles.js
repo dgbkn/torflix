@@ -110,7 +110,10 @@ export default function SeeAllFiles() {
                                                             icon={
                                                                 <FaFolder w={5} h={5} />
                                                             }
-                                                            text={ele.name}
+                                                            text={<div style={{
+                                                                textWrap: "wrap",
+                                                                width: "60vw"
+                                                            }}> {ele.name} </div>}
                                                         />
                                                     </HStack>
                                                     <AccordionIcon />
