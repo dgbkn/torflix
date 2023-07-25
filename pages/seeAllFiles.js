@@ -6,7 +6,7 @@ import { FaFolder } from "react-icons/fa";
 import SkeletonPage from "../components/SkeletonPage";
 import Feature from '../components/Feature';
 import { useRouter } from "next/router";
-import { isAndroid } from "react-device-detect";
+import { isAndroid, isIOS } from "react-device-detect";
 import Script from 'next/script';
 import VidStackPlayer from "./player/vidstackplayer";
 import Link from "next/link";
@@ -173,6 +173,15 @@ export default function SeeAllFiles() {
                                                         </HStack>
                                                     </>}
 
+                                                    {isIOS && <>
+                                                        <br />
+                                                        <br />
+                                                        Select Your Favourite Player to Watch:
+                                                        <br />
+                                                        <HStack>
+                                                            <a href={'vlc-x-callback://x-callback-url/stream?url=' + "https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id}><Image alt={"VLC Player"} src='https://i.ibb.co/pnkzqQy/index.png' width='50' height='50' /></a>
+                                                        </HStack>
+                                                    </>}
 
                                                 </>}
 
