@@ -1,13 +1,26 @@
 import { useRouter } from "next/router";
 import VidStackPlayer from "../vidstackplayer";
 import Head from "next/head";
+import { useBreakpointValue } from '@chakra-ui/react'
 
 export default function Player() {
     const router = useRouter();
 
+    const width = useBreakpointValue(
+        {
+          sm: '100vw',
+          md: '70vw',
+          lg: '60vw',
+        },
+        {
+          fallback: 'md',
+        },
+      )
+
+
     return (
         <center>
-        <div style={{padding:"0px 20px",width:"60vw"}}> 
+        <div style={{padding:"0px 20px",width:width}}> 
           {router.query.id && router.query.title && <>
           <Head>
             {router.query.title && <title>{router.query.title}</title> }
