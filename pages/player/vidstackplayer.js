@@ -13,6 +13,7 @@ export default function VidStackPlayer({ title = "", src = "https://stream.mux.c
     return (
         <div ><MediaPlayer
             load='eager'
+            autoplay={true}
             title={title}
             src={[{ src: src, type: 'video/mp4' },
             ]}
