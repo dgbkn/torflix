@@ -20,14 +20,12 @@ export default function Player() {
 
     return (
         <center>
-        <div style={{padding:"0px 20px",width:width}}> 
           {router.query.id && router.query.title && <>
           <Head>
             {router.query.title && <title>{router.query.title}</title> }
           </Head>
             <VidStackPlayer src={"https://seedr.torrentdev.workers.dev/downloadProxy?id=" + router.query.id} title={router.query.title} />
           </>  }
-        </div>
         </center>
     )
 }
