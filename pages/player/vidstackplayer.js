@@ -15,6 +15,7 @@ export default function VidStackPlayer({ title = "", src = "https://stream.mux.c
             load='eager'
             autoplay={true}
             title={title}
+            aspectRatio={16 / 9}
             src={[{ src: src, type: 'video/mp4' },
             ]}
             // src={src}
