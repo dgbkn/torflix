@@ -146,11 +146,11 @@ export default function SeeAllFiles() {
                                                         </Button>
                                                     </a>
 
-                                                    <Link href={`player/${ele.id}/${ele.name}`} target='_black'>
+                                                    <a href={`player/${ele.id}/${ele.name}`} target='_black'>
                                                         <Button colorScheme='yellow' variant='outline'>
                                                             Play HD.
                                                         </Button>
-                                                    </Link>
+                                                    </a>
 
 
                                                     <a href={`https://chromecast.link/#title=Playing_Torrent&poster=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2Fo76ZDm8PS9791XiuieNB93UZcRV.jpg&content=${encodeURIComponent("https://seedr.torrentdev.workers.dev" + "/download?id=" + ele.id)}`} target='_black'>
