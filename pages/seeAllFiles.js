@@ -8,6 +8,7 @@ import Feature from '../components/Feature';
 import { useRouter } from "next/router";
 import { isAndroid } from "react-device-detect";
 import Script from 'next/script';
+import VidStackPlayer from "./player/vidstackplayer";
 
 export default function SeeAllFiles() {
 
@@ -63,13 +64,14 @@ export default function SeeAllFiles() {
 
                 </Head>
 
-                <Script
+
+                {/* <Script
                     src="/speedVid.js"
                     strategy="lazyOnload"
                     onLoad={() =>
                         console.log(`script loaded correctly, speed handler has been populated`)
                     }
-                />
+                /> */}
 
                 <Heading
                     fontWeight={'bold'}
@@ -95,12 +97,13 @@ export default function SeeAllFiles() {
                         {
 
                             filesAndFolders.map(
-                                (el,i1) => <>
-                                    {el.map((ele,i2) => <>
+                                (el, i1) => <>
+                                    {el.map((ele, i2) => <>
 
                                         <AccordionItem>
                                             <h2>
-                                                <AccordionButton onClick={() => {document.getElementById(`${i1}${i2}player`).preload = true}}>
+                                                {/* <AccordionButton onClick={()=>{document.getElementById(`${i1}${i2}player`).preload = true}}> */}
+                                                <AccordionButton>
                                                     <HStack height={'50px'} padding={2}>
                                                         <Feature
                                                             icon={
@@ -124,10 +127,13 @@ export default function SeeAllFiles() {
 
 
                                                 {(ele.name.includes(".mkv") || ele.name.includes(".mp4")) && <>
-
+                                                    {/* 
                                                     <video height={'200px'} key={'video34p'} id={`${i1}${i2}player`} controls={true} style={{ margin: 15 }} preload="none">
                                                         <source src={`https://seedr.torrentdev.workers.dev/downloadProxy?id=${ele.id}`} type='video/mp4' />
-                                                    </video>
+                                                    </video> */}
+
+
+
 
 
 
@@ -136,6 +142,12 @@ export default function SeeAllFiles() {
                                                     <a href={`https://seedr.torrentdev.workers.dev/playVid?id=${ele.id}&embed=1`} target='_black'>
                                                         <Button colorScheme='yellow' variant='outline'>
                                                             Play SD.
+                                                        </Button>
+                                                    </a>
+
+                                                    <a href={`player/${ele.id}`} target='_black'>
+                                                        <Button colorScheme='yellow' variant='outline'>
+                                                            Play HD.
                                                         </Button>
                                                     </a>
 

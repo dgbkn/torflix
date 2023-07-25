@@ -5,8 +5,10 @@ import {
   theme,
 } from '@chakra-ui/react';
 import Navbar from '../components/Navbar';
-import "./plyr.css";
+// import "./plyr.css";
 import Script from 'next/script';
+
+
 
 function MyApp({ Component, pageProps }) {
 
