@@ -15,8 +15,9 @@ export default function VidStackPlayer({ title = "", src = "https://stream.mux.c
             load='eager'
             autoplay={true}
             title={title}
-            src={[{ src: src, type: 'video/mp4' },
-            ]}
+            // src={[{ src: src, type: 'video/mp4' },
+            // ]}
+            src={src}
         >
             <MediaOutlet>
                 {/* <media-poster
