@@ -95,12 +95,12 @@ export default function SeeAllFiles() {
                         {
 
                             filesAndFolders.map(
-                                (el) => <>
-                                    {el.map((ele) => <>
+                                (el,i1) => <>
+                                    {el.map((ele,i2) => <>
 
                                         <AccordionItem>
                                             <h2>
-                                                <AccordionButton>
+                                                <AccordionButton onClick={() => {document.getElementById(`${i1}${i2}player`).preload = true}}>
                                                     <HStack height={'50px'} padding={2}>
                                                         <Feature
                                                             icon={
@@ -125,7 +125,7 @@ export default function SeeAllFiles() {
 
                                                 {(ele.name.includes(".mkv") || ele.name.includes(".mp4")) && <>
 
-                                                    <video height={'200px'} key={'video34p'} id={'plyrvid'} controls={true} style={{ margin: 15 }} preload="none">
+                                                    <video height={'200px'} key={'video34p'} id={`${i1}${i2}player`} controls={true} style={{ margin: 15 }} preload="none">
                                                         <source src={`https://seedr.torrentdev.workers.dev/downloadProxy?id=${ele.id}`} type='video/mp4' />
                                                     </video>
 
