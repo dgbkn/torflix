@@ -35,6 +35,9 @@ export default function AddMagnet() {
       setonInit(progUri);
     } catch (error) {
       console.error('Could not load progress URI.');
+      setTimeout(() => {
+        loadProguri();
+      }, 1000);
     }
   };
 
